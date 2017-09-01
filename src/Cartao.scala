@@ -1,31 +1,31 @@
 import scala.util.matching.Regex
 
-class Card(card: String) {
-  require(isValid(card), "Invalid card specification")
+class Cartao(cartao: String) {
+  require(isValid(cartao), "Especificacao invalida do cartao")
 
   def face: String = {
-    card.substring(0,1)
+    cartao.substring(0,1)
   }
 
   def suit: String = {
-    card.substring(1,2)
+    cartao.substring(1,2)
   }
 
   def value: Int = {
-    Card.value(face)
+    Cartao.value(face)
   }
 
   override def toString: String = {
-    card
+    cartao
   }
 
-  private def isValid(card: String): Boolean = {
-    new Regex("[2-9KTQJA]{1}[CDSH]{1}").findAllIn(card).length > 0
+  private def isValid(cartao: String): Boolean = {
+    new Regex("[2-9KTQJA]{1}[CDSH]{1}").findAllIn(cartao).length > 0
   }
 }
 
-object Card {
-  def apply(cs: String): Card = new Card(cs)
+object Cartao {
+  def apply(cs: String): Cartao = new Cartao(cs)
 
   val suits: List[String] = 
     List("C", "H", "D", "S")

@@ -1,18 +1,18 @@
-class FullHouse extends HandType {
-  def evaluate(h: Hand): (Boolean, HandType, List[Int]) = {
+class FullHouse extends MaoJogadorType {
+  def evaluate(m: MaoJogador): (Boolean, MaoJogadorType, List[Int]) = {
 
     def matches: Boolean = {
-      h.pairs.toList.length == 1 && h.trips.toList.length == 1
+      m.pares.toList.length == 1 && m.tipla.toList.length == 1
     }
 
     def score: List[Int] = {
       val p: List[Int] = matches match {
-        case true  => h.trips.collect { case (a,b) => b.head.value }.toList
+        case true  => m.tipla.collect { case (a,b) => b.head.value }.toList
         case false => 0 :: Nil
       }
       
       val q: List[Int] = matches match {
-        case true  => h.pairs.collect { case (a,b) => b.head.value }.toList
+        case true  => m.pares.collect { case (a,b) => b.head.value }.toList
         case false => 0 :: Nil
       }
 
@@ -28,5 +28,5 @@ class FullHouse extends HandType {
 }
 
 object FullHouse {
-  def apply(h: Hand): (Boolean, HandType, List[Int]) = (new FullHouse).evaluate(h)
+  def apply(m: MaoJogador): (Boolean, MaoJogadorType, List[Int]) = (new FullHouse).evaluate(m)
 }

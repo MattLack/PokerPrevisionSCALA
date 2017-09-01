@@ -1,11 +1,11 @@
-class StraightFlush extends HandType {
-  def evaluate(h: Hand): (Boolean, HandType, List[Int]) = {
+class StraightFlush extends MaoJogadorType {
+  def evaluate(m: MaoJogador): (Boolean, MaoJogadorType, List[Int]) = {
 
     def matches: Boolean = {
-      h.isConsecutive && h.isSameSuit
+      m.isConsecutive && m.isSameSuit
     }
 
-    (matches, this, 8 :: h.sorted.map(_.value))
+    (matches, this, 8 :: m.sorted.map(_.value))
   }
 
   override def toString: String = {
@@ -14,5 +14,5 @@ class StraightFlush extends HandType {
 }
 
 object StraightFlush {
-  def apply(h: Hand): (Boolean, HandType, List[Int]) = (new StraightFlush).evaluate(h)
+  def apply(m: MaoJogador): (Boolean, MaoJogadorType, List[Int]) = (new StraightFlush).evaluate(m)
 }

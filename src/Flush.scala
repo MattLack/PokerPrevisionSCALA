@@ -1,6 +1,6 @@
-class Flush extends HandType {
-  def evaluate(h: Hand): (Boolean, HandType, List[Int]) = {
-    (h.isSameSuit, this, 5 :: h.sorted.map(_.value))
+class Flush extends MaoJogadorType {  
+  def evaluate(MaoJogador: MaoJogador): (Boolean, MaoJogadorType, List[Int]) = {
+    (MaoJogador.isSameSuit, this, 5 :: MaoJogador.sorted.map(_.value))
   }
 
   override def toString: String = {
@@ -9,5 +9,5 @@ class Flush extends HandType {
 }
 
 object Flush {
-  def apply(h: Hand): (Boolean, HandType, List[Int]) = (new Flush).evaluate(h)
+  def apply(MaoJogador: MaoJogador): (Boolean, MaoJogadorType, List[Int]) = (new Flush).evaluate(MaoJogador)
 }
